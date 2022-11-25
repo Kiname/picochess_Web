@@ -218,25 +218,6 @@ class TimeControl(object):
                 deltaBW -= self.fisch_inc
             logging.info('delta: %s', deltaBW)
 
-            if self.clock_time[chess.WHITE] >= self.internal_time[chess.WHITE] and \
-               self.clock_time[chess.BLACK] >= self.internal_time[chess.BLACK] and \
-               deltaBW == 0:
-                logging.info('looks like external clock is not present...not taking over its time now')
-            else:
-                w_dir, b_dir = self.get_internal_time(flip_board=False)
-                # molli Avoid strange reset bug to 0
-                if w_dir != self.clock_time[chess.WHITE] and (self.clock_time[chess.WHITE] == 0 or (self.clock_time[chess.WHITE] == self.fisch_inc and self.mode == TimeMode.FISCHER) or (self.clock_time[chess.WHITE] == self.game_time and self.mode == TimeMode.BLITZ)):
-                    logging.debug('molli: Difference in white clock time!')
-                    self.clock_time[chess.WHITE] = w_dir
-                else:
-                    self.internal_time[chess.WHITE] = self.clock_time[chess.WHITE]
-                # molli Avoid strange reset bug to 0
-                if b_dir != self.clock_time[chess.BLACK] and (self.clock_time[chess.BLACK] == 0 or (self.clock_time[chess.BLACK] == self.fisch_inc and self.mode == TimeMode.FISCHER) or (self.clock_time[chess.BLACK] == self.game_time and self.mode == TimeMode.BLITZ)):
-                    logging.debug('molli: Difference in black clock time!')
-                    self.clock_time[chess.BLACK] = b_dir
-                else:
-                    self.internal_time[chess.BLACK] = self.clock_time[chess.BLACK]
-
             # Only start thread if not already started for same color, and the player has not already lost on time
             if self.internal_time[color] > 0 and self.active_color is not None and self.run_color != self.active_color:
                 self.timer = threading.Timer(copy.copy(self.internal_time[color]), self._out_of_time,
