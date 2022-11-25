@@ -67,15 +67,15 @@ class UciEngine(object):
         logging.info('parameter retrospeed=' + retrospeed)
         try:
             self.shell = uci_shell.get()
-            logging.warning('file ' + file)
+            logging.info('file ' + file)
             if file.find('/engines/armv7l/mame') > 0 :
                 mfile = [file, retrospeed]
                 logging.info(mfile)
             else:
-                mfile = file
+                mfile = [file]
                 logging.info(mfile)
             if self.shell:
-                self.engine = chess.uci.spur_spawn_engine(self.shell, [mfile])
+                self.engine = chess.uci.spur_spawn_engine(self.shell, mfile)
             else:
                 self.engine = chess.uci.popen_engine(mfile, stderr=DEVNULL)
 
