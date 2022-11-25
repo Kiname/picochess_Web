@@ -61,17 +61,10 @@ class DgtDisplay(DisplayMsg, threading.Thread):
 
     def _convert_pico_string(self, pico_string):
         # print routine for longer text output like opening name, comments
-        text_length = 0
         result_list = []
         result = ''
-
-        if Rev2Info.get_new_rev2_mode():
-            text_length = 11
-        elif Rev2Info.get_pi_mode():
-            text_length = 8
-        else:
-            text_length = 11
-
+        text_length = 20
+        
         if pico_string:
             op_list = pico_string.split()
             for op_part in op_list:
