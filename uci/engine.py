@@ -68,7 +68,7 @@ class UciEngine(object):
         try:
             self.shell = uci_shell.get()
             logging.info('file ' + file)
-            if file.find('/engines/armv7l/mame') > 0 :
+            if file.find('/engines/armv7l/mame') > 0:
                 mfile = [file, retrospeed]
                 logging.info(mfile)
             else:
