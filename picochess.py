@@ -1934,7 +1934,7 @@ def main() -> None:
     parser.add_argument('-odec', '--online-decrement', type=float, default=2.0, help='Seconds to be subtracted after each own online move in order to sync with server times')
     parser.add_argument('-board', '--board-type', type=str, default='dgt', help='Type of e-board: "dgt", "certabo", "chesslink" or "chessnut", default is "dgt"')
     parser.add_argument('-theme', '--theme', type=str, default='dark', help='Web theme, "light", "dark" or blank, default is "dark", leave blank for another light theme')
-    parser.add_argument('-rspeed', '--rspeed', type=str, default='\'-speed 1.0\'', help='Speedbar, -nothrottle for fullspeed or any other value from 0.2 to 1.0')
+    parser.add_argument('-rspeed', '--rspeed', type=str, default='-speed 1.0', help='Speedbar, -nothrottle for fullspeed or any other value from 0.2 to 1.0')
     args, unknown = parser.parse_known_args()
 
     # Enable logging
